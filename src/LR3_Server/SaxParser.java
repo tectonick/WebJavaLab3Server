@@ -10,17 +10,18 @@ public class SaxParser implements XmlParser {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<Note> parse(InputSource inputSource) {
+	public List<Note> parse(String tmpfile) {
 		XMLReader reader;
 		List<Note> notes=null;
 		try {
 			reader = XMLReaderFactory.createXMLReader();
 			NoteSaxHandler handler = new NoteSaxHandler();
 			reader.setContentHandler(handler);
-			reader.parse(inputSource);
+
 			reader.setFeature("http://xml.org/sax/features/validation", true);
 			reader.setFeature("http://xml.org/sax/features/namespaces", true);
 			//reader.setFeature("http://apache.org/xml/features/validation/schema",true);
+			reader.parse(new InputSource(tmpfile));
 			notes = handler.getNotes();
 			for (Note note : notes) {
 				System.out.println(note.getHeading());
@@ -107,5 +108,23 @@ class NoteSaxHandler extends DefaultHandler { private
 }
 
 enum noteTagName {
-TO, FROM, HEADING, BODY, ID, NOTE
+	TO, FROM, HEADING, BODY, ID, NOTE;
+
+	public static noteTagName getElementTagName(String element) {
+		switch (element) {
+		case "note":
+			return NOTE;
+		case "to": 
+			return TO;
+		case "from":
+			return FROM;
+		case"heading":
+			return HEADING;
+		case "body":
+			return BODY;
+		case "id":
+			return ID;
+		}
+		return null;
+	}
 }
