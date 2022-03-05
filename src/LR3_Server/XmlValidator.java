@@ -8,6 +8,14 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 
+
+/**
+ * Класс валидации xml по xsd схеме.
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class XmlValidator {
 	public boolean validate(String filepath, String schemapath) {
 		File schemaFile = new File(schemapath);

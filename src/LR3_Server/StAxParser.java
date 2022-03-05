@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.stream.*; 
 
+
+/**
+ * Класс StAX парсера
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class StAxParser implements XmlParser {
 
 	@Override
@@ -25,6 +33,12 @@ public class StAxParser implements XmlParser {
 		return notes;
 	}
 	
+	
+	/**
+	 * Основной метод обрабоки парсера.
+	 * @param reader Объект чтения потока xml
+	 * @return List<Note>
+	 */
 	private static List<Note> process(XMLStreamReader reader) throws XMLStreamException {
 		List<Note> notes = new ArrayList<Note>();
 		Note note = null;

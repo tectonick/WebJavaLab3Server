@@ -6,6 +6,14 @@ import java.util.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
+
+/**
+ * Класс SAX парсера
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class SaxParser implements XmlParser {
 
 	@SuppressWarnings("deprecation")
@@ -37,7 +45,13 @@ public class SaxParser implements XmlParser {
 	}
 }
 
-
+/**
+ * Класс Default handler для SAX парсера
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 class NoteSaxHandler extends DefaultHandler { private
 	List<Note> noteList = new ArrayList<Note>(); 
 	private Note note;

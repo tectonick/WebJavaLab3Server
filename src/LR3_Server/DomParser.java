@@ -7,6 +7,13 @@ import org.w3c.dom.*;
 import org.apache.xerces.parsers.DOMParser;
 import org.xml.sax.SAXException;
 
+/**
+ * Класс DOM парсера
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class DomParser implements XmlParser {
 
 	@Override

@@ -2,6 +2,14 @@ package LR3_Server;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс заметки.
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class Note implements Serializable{
 	/**
 	 * 

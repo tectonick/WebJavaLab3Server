@@ -2,7 +2,14 @@ package LR3_Server;
 import java.util.*;
 import java.net.*;
 import java.io.*;
-
+/**
+ * Основной класс сервера.
+ * Инициализирует данные, запускает сервер, отвечает на запросы клиента
+ * 
+ * @author      Николай Киселев <korn9509@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
 public class Server {
 	private static ServerSocket serverSocket;
 	private static Socket clientSocket;
@@ -16,18 +23,6 @@ public class Server {
 	final static int PORT=49011;
 	final static String TMPFILENAME = "tmpdata.xml";
 	final static String SCHEMAFILENAME= "schema.xml";
-
-	public static void testParsers() {
-		List<Note> notes=null;
-		DomParser dom=new DomParser();
-		SaxParser sax=new SaxParser();
-		StAxParser stax=new StAxParser();
-
-		notes = stax.parse("data.xml");
-		for (Note note:notes) {
-			System.out.println(note.getHeading());
-		}
-	}
 
 	public static void stop() {
 		try {
