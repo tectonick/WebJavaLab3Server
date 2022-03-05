@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notes>
+<note>
+<id>1</id>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+<note>
+<id>2</id>
+<to>Jani</to>
+<from>Tove</from>
+<heading>Got reminder</heading>
+<body>Ok! I Remember</body>
+</note>
+<note>
+<id>3</id>
+<to>Jake</to>
+<from>John</from>
+<heading>Reminder</heading>
+<body>Party is tonight!</body>
+</note>
+</notes>
