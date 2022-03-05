@@ -8,7 +8,9 @@ public class Server {
 	private static Socket clientSocket;
 	private static PrintWriter out;
 	private static BufferedReader in;
-
+	private static OutputStream rawout;
+	private static InputStream rawin;
+	
 	private static FileOutputStream outFile = null;
 
 	final static int PORT=49011;
@@ -48,9 +50,11 @@ public class Server {
 			System.out.println("Server started on port "+PORT);
 			clientSocket = serverSocket.accept();
 			System.out.println("New client"+clientSocket.getLocalAddress());
-			out = new PrintWriter(clientSocket.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
+			rawout=clientSocket.getOutputStream();
+			rawin=clientSocket.getInputStream();
+			
+	        out = new PrintWriter(rawout, true);
+	        in = new BufferedReader(new InputStreamReader(rawin));
 
 			XmlParser xmlparser=null;
 			String responseMessage="OK";
@@ -82,7 +86,7 @@ public class Server {
 			outFile.close(); 
 
 			List<Note> notes=xmlparser.parse(TMPFILENAME);
-			ObjectOutputStream outobj = new ObjectOutputStream(clientSocket.getOutputStream());
+			ObjectOutputStream outobj = new ObjectOutputStream(rawout);
 			outobj.writeObject(notes);
 			outobj.close();
 			
