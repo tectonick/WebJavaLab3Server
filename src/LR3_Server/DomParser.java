@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.*; 
 import org.apache.xerces.parsers.DOMParser;
-
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class DomParser implements XmlParser {

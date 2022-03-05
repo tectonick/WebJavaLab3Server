@@ -23,9 +23,6 @@ public class SaxParser implements XmlParser {
 			//reader.setFeature("http://apache.org/xml/features/validation/schema",true);
 			reader.parse(new InputSource(tmpfile));
 			notes = handler.getNotes();
-			for (Note note : notes) {
-				System.out.println(note.getHeading());
-			}
 			
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
@@ -55,21 +52,16 @@ class NoteSaxHandler extends DefaultHandler { private
 	public void endDocument() throws SAXException {
 		System.out.println("Parsing ended.");
 	}
-	public void startElement(String uri, String localName, String qName,
-			Attributes attributes) throws SAXException {
-		
-		System.out.println("startElement -> " + "uri: " + uri + ", localName:" +
-				localName+", qName: " + qName); text = new StringBuilder();
-
-			if (qName.equals("note")) note = new Note();
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		System.out.println("startElement -> " + "uri: " + uri + ", localName:" +localName+", qName: " + qName); text = new StringBuilder();
+		if (qName.equals("note")) note = new Note();
 	}
 	public void characters(char[] buffer, int start, int length) {
 		text.append(buffer, start, length);
 	}
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		noteTagName tagName =
-				noteTagName.valueOf(qName.toUpperCase().replace("-", "_"));
+		noteTagName tagName = noteTagName.valueOf(qName.toUpperCase().replace("-", "_"));
 		switch(tagName){
 		case ID:
 			note.setId(Integer.parseInt(text.toString()));
@@ -108,7 +100,7 @@ class NoteSaxHandler extends DefaultHandler { private
 }
 
 enum noteTagName {
-	TO, FROM, HEADING, BODY, ID, NOTE;
+	TO, FROM, HEADING, BODY, ID, NOTE, NOTES;
 
 	public static noteTagName getElementTagName(String element) {
 		switch (element) {
@@ -124,6 +116,8 @@ enum noteTagName {
 			return BODY;
 		case "id":
 			return ID;
+		case "notes":
+			return NOTES;
 		}
 		return null;
 	}
