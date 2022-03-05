@@ -24,7 +24,7 @@ public class DomParser implements XmlParser {
 			for (int i = 0; i < noteNodes.getLength(); i++) {
 				note = new Note();
 				Element noteElement = (Element) noteNodes.item(i);
-				note.setId(Integer.parseInt(getSingleChild(noteElement,"id").getTextContent().trim()));
+				note.setId((getSingleChild(noteElement,"id").getTextContent().trim()));
 				note.setTo(getSingleChild(noteElement,"to").getTextContent().trim());
 				note.setFrom(getSingleChild(noteElement,"from").getTextContent().trim());
 				note.setHeading(getSingleChild(noteElement,"heading").getTextContent().trim());

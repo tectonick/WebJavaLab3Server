@@ -15,6 +15,7 @@ public class Server {
 
 	final static int PORT=49011;
 	final static String TMPFILENAME = "tmpdata.xml";
+	final static String SCHEMAFILENAME= "schema.xml";
 
 	public static void testParsers() {
 		List<Note> notes=null;
@@ -28,7 +29,6 @@ public class Server {
 		}
 	}
 
-
 	public static void stop() {
 		try {
 			in.close();
@@ -36,10 +36,8 @@ public class Server {
 			clientSocket.close();
 			serverSocket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args) {
@@ -85,14 +83,16 @@ public class Server {
 			}
 			outFile.close(); 
 
-			List<Note> notes=xmlparser.parse(TMPFILENAME);
-			ObjectOutputStream outobj = new ObjectOutputStream(rawout);
-			outobj.writeObject(notes);
-			outobj.close();
-			
+			XmlValidator xmlvalidator= new XmlValidator();
+			boolean isvalid=xmlvalidator.validate(TMPFILENAME,SCHEMAFILENAME);
+			if (isvalid) {
+				List<Note> notes=xmlparser.parse(TMPFILENAME);
+				ObjectOutputStream outobj = new ObjectOutputStream(rawout);
+				outobj.writeObject(notes);
+				outobj.close();
+			}			
 			stop();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

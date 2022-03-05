@@ -59,8 +59,8 @@ public class StAxParser implements XmlParser {
 						note.setBody(text);
 						break;
 					case ID:
-						Integer id = Integer.parseInt(text);
-						note.setId(id);
+						
+						note.setId(text);
 						break;
 					}
 				break;

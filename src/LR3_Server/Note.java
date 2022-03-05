@@ -7,13 +7,13 @@ public class Note implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private String id;
 	private String to;
 	private String from;
 	private String heading;
 	private String body;
 	
-	public Note(int id, String to, String from, String heading, String body) {
+	public Note(String id, String to, String from, String heading, String body) {
 		this.setId(id);
 		this.setTo(to);
 		this.setFrom(from);
@@ -25,10 +25,10 @@ public class Note implements Serializable{
 		
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTo() {
